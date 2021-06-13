@@ -1,0 +1,595 @@
+:root {
+    --dark-blue: #363f5f;
+    --green: #49aa26;
+    --light-green: #3dd705;
+    --red: #e92929;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 93.75%;
+}
+
+body {
+    background: #f0f2f5;
+    font-family: 'Poppins', sans-serif;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.container{
+    width: min(90vw, 800px );
+    margin: auto;
+}
+
+/*Títulos ============================================ */
+
+h2{
+    margin-bottom: 0.8rem;
+    color: var(--dark-blue);
+    font-weight: normal;
+}
+
+/*Links e Buttons ============================================ */
+
+a {
+    color: var(--green);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--light-green);
+}
+
+button {
+    width: 100%;
+    height: 50px;
+    border: none;
+    color: white;
+    background: var(--green);
+    padding: 0;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-family: 'Poppins';
+    font-size: 1.5rem !important;
+}
+
+button:hover {
+    background: var(--light-green);
+}
+
+.button.new {
+    display: inline-block;
+    margin-bottom: .8rem;
+    
+}
+
+.button.cancel {
+    color: var(--red);
+    border: 2px var(--red) solid;
+    border-radius: 0.25rem;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+}
+
+.button.cancel:hover {
+    opacity: 1;
+}
+
+/*header ============================================ */
+
+header {
+    background: #2d4a22;
+    padding: 2rem 0 10rem;
+    text-align: center;
+}
+
+#logo {
+    color: #fff;
+    font-weight: 100;
+}
+
+/*Balance ============================================ */
+
+#balance {
+    margin-top: -8rem;
+}
+
+#balance h2{
+    color: white;
+    margin-top: 0;
+}
+
+/*cards ============================================ */
+
+.card{
+    background: white;
+    padding: 1rem 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 2rem;
+    color: var(--dark-blue);
+
+}
+
+.card h3 {
+    font-weight: normal;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card p {
+    font-size: 2rem;
+    line-height: 3rem;
+    margin-top: 1rem;
+}
+
+.card.total {
+    background: var(--green);
+    color: white;
+    width: 100%;
+}
+
+/*tabela ============================================ */
+
+#transaction {
+    display: block;
+    width: 100%;
+}
+
+#data-table {
+    width: 100%;
+    border-spacing: 0 0.5rem;
+    color: #969cb3;
+}
+
+table thead tr th:first-child,
+table tbody tr td:first-child {
+    border-radius: 0.25rem 0 0 0.25rem;
+}
+
+table thead tr th:last-child,
+table tbody tr td:last-child {
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+
+table thead th {
+    background: white;
+    font-weight: normal;
+    padding: 1rem 2rem;
+    text-align: left;
+}
+
+table tbody tr {
+    opacity: 0.7;
+}
+
+table tbody tr:hover {
+    opacity: 1;
+}
+
+table tbody td {
+    background: white;
+    padding: 1rem 2rem;
+}
+
+td.description {
+    color: var(--dark-blue);
+}
+
+td.income {
+    color: #12a454;
+}
+
+td.expense {
+    color: #e92929;
+}
+
+/*Modal ============================================ */
+
+/* .modal-overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+
+} */
+
+.modal-overlay2 {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    z-index: 999;
+
+}
+
+/* .modal-overlay.active{
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background-color: #f0f2f5;
+    padding: 2.4rem;
+
+} */
+
+.modal2 {
+    background-color: #f0f2f5;
+    padding: 2.4rem;
+
+}
+
+/*Form ============================================ */
+
+#form {
+    max-width: 500px;
+}
+
+#form h2 {
+    margin-top: 0;
+}
+
+input {
+    border: none;
+    border-radius: 0.2rem;
+    padding: 0.8rem;
+    width: 100%;
+}
+
+.input-group .help{
+    opacity: 0.4;
+}
+
+.input-group.actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-group.actions .button,
+.input-group.actions button {
+    width: 48%;
+}
+
+/*footer ============================================ */
+
+footer{
+    text-align: center;
+    padding: 4rem 0 2rem;
+    color: var(--dark-blue);
+    opacity: 0.6;
+}
+
+/*Novos estilos ============================================ */
+
+.card.total img{
+    width: 4rem;
+}
+
+.card.total img{
+    width: 4rem;
+}
+
+.cardList{
+    width: 100%;
+    background: white;
+    padding: 1rem 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 2rem;
+    color: var(--dark-blue);
+}
+
+.imageColumn {
+    width: 20%;
+    padding: 0.5rem;
+}
+
+.imageColumn img {
+    width: 100%;
+}
+
+.imageColumn-profile {
+    width: 100%;
+    max-width: 100px;
+    min-width: 85px;
+    padding-right: 0.8rem;
+}
+
+.imageColumn-profile img {
+    width: 100%;
+}
+
+.Idcolumn{
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.9rem;
+}
+
+.Idcolumn small{
+    background-color: #f0f2f5;
+    border-radius: 1.5rem;
+    font-size: 1rem;
+    padding: 3px 10px;
+    border: 1px dotted;
+}
+
+.nameColumn{
+    padding: 0 0.3rem;
+    border-radius: 0.5rem;
+    flex-grow: 8;
+}
+
+.priceColumn{
+    margin: 0 1rem;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.priceColumn span{
+    color: #49aa26;
+}
+
+.priceColumn strong{
+    font-size: 2rem;
+}
+
+.priceColumn p{
+    margin-bottom: 0;
+    font-weight: 700;
+}
+
+.priceColumn img{
+    width: 4rem;
+}
+
+.btn-by{
+    width: 100%;
+    text-align: center;
+    background-color: #f0f2f5;
+    border: 1px solid;
+    border-radius: 0.5rem;
+    box-shadow: 1px 2px #49aa26;
+    padding: 0.5rem;
+}
+
+.columnNamePrice{
+    margin-left: 2rem;
+}
+
+.flex-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.myOrthers{
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    padding: 1rem;
+    border: 1px solid;
+    border-radius: 0.356rem;
+    margin-bottom: 0.6rem;
+}
+
+.myOrthers h3{
+    margin: 0;
+}
+
+.dateColumn{
+    text-align: end;
+}
+
+.dateColumn time{
+    border: 1px solid rgb(65 65 76 / 24%);
+    padding: 0.5rem;
+    border-radius: 0.356rem;
+}
+
+.card-profile{
+    padding-left: 0;
+}
+
+.amountColumn{
+    flex-grow: 1;
+    text-align: center;
+}
+
+.cardImge img {
+    border-radius: 50%;
+  
+    border: .25rem var(--color-secondary) solid;
+  
+    width: 11.25rem;
+    height: 11.25rem;
+  
+    margin-bottom: 1.5rem;
+  }
+
+  #updateTransaction input{
+      display: none;
+  }
+
+  #updateTransaction button{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+  .status {
+      text-align: end;
+  }
+
+  .status .statusRed{
+    background-color: red;
+    padding: 0.5rem;
+    color: white;
+    border-radius: 0.356rem;
+}
+
+.status .statusGreen{
+    background-color: green;
+    padding: 0.5rem;
+    color: white;
+    border-radius: 0.356rem;
+}
+
+#pay .input-group-prepend{
+    width: 100%;
+}
+
+#pay #amountBalanceId{
+    display: none;
+}
+
+#pay #amountBalance{
+    height: 3rem;
+}
+
+.container-loginGB{
+    background: rgb(0,255,64) !important;
+    background: linear-gradient(184deg, rgba(0,255,64,1) 0%, rgba(26,71,33,1) 100%)!important;
+}
+
+.imageMoedaRobotica {
+    display: none;
+}
+
+@media only screen and (max-width: 768px){
+    .wrap-login100{
+        justify-content:center;
+    }
+
+    .imageMoedaRobotica {
+        display: block;
+        text-align: center;
+    }
+
+    .imageMoedaRobotica img {
+        width: 30%
+    }
+} 
+
+/* .Alunos6Ano{
+    display: none;
+} */
+
+.modalBalanceError{
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+.modalBalanceSuccess{
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+.content-modalBalanceError{
+    position: fixed;
+    border-radius: 0.5rem;
+    background-color: white;
+    padding: 1rem;
+    border: 5px solid #ff0000;
+    width: 80%;
+    text-align: center;
+    max-width: 350px;
+    min-width: 300px;
+}
+
+.content-modalBalanceSuccess{
+    position: fixed;
+    border-radius: 0.5rem;
+    background-color: white;
+    padding: 1rem;
+    border: 5px solid #00ff2a;
+    width: 80%;
+    text-align: center;
+    max-width: 350px;
+    min-width: 300px;
+}
+
+.btnMsgClose{
+    position: absolute;
+    top: 0;
+    background: #e9b74d;
+    right: 0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1rem;
+}
+
+.btnMsgClose:focus{
+    outline: thin dotted;
+    outline: 0px auto -webkit-focus-ring-color;
+    outline-offset: 0px;
+}
+
+.divImageMoeda img{
+    width: 100%;
+}
+
+.helpToBy{
+    text-align: left;
+    padding: 1rem;
+}
+
+
+
+
+/*Responsive ============================================ */
+
+@media (min-width: 800px) {
+    html {
+        font-size: 87.5%;
+    }
+
+    #balance {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+}

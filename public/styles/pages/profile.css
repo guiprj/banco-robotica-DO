@@ -1,0 +1,14 @@
+.cardImge img {
+  border-radius: 50%;
+
+  border: .25rem var(--color-secondary) solid;
+
+  width: 11.25rem;
+  height: 11.25rem;
+
+  margin-bottom: 1.5rem;
+}
+
+.cardImge button {
+  font-size: 1.3rem !important;
+}
