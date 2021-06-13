@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 
-const connection = new Sequelize('boncorobotica', 'guidevprof', 'dvs2208612', {
+const connection = new Sequelize('boncorobotica', 'guidevprof', 'dvs22086122', {
   host: 'mysql742.umbler.com',
   dialect: 'mysql',
   freezeTableName: true
