@@ -2,10 +2,25 @@ const passport = require("passport");
 const Profile = require("../model/Profile");
 
 module.exports = {
-  get(req, res) {
-    Profile.findAll({ raw: true })
+  async get(req, res) {
+    await Profile.findAll({ raw: true })
       .then((users) => {
-        res.render("login", { users: users });
+        let registerSuccess = req.flash("registerSuccess");
+        registerSuccess =
+        registerSuccess == undefined || registerSuccess.length == 0
+        ? undefined
+        : registerSuccess;
+
+        let msgErrorLogin = req.flash("msgErrorLogin");
+        msgErrorLogin =
+        msgErrorLogin == undefined || msgErrorLogin.length == 0
+        ? undefined
+        : msgErrorLogin;
+
+        res.render("login", { users: users, 
+                              registerSuccess: registerSuccess, 
+                              msgErrorLogin: msgErrorLogin
+                            });
       })
       .catch((err) => {
         res.redirect("/register");
@@ -13,19 +28,21 @@ module.exports = {
   },
 
   async login(req, res, next) {
+    let msgErrorLogin = "Username ou senha incorretos!"
     passport.authenticate("local", function (err, user, info) {
       if (err) {
         return next(err);
-      }
-      if (!user) {
-        return res.redirect("/register");
-      }
-      req.logIn(user, function (err) {
-        if (err) {
-          return next(err);
-        }
-        return res.redirect("/");
-      });
+      }else if(!user){
+        req.flash('msgErrorLogin', msgErrorLogin)
+        return res.redirect("/login");
+      }else{
+        req.logIn(user, function (err) {
+          if (err) {
+            return next(err);
+          }
+          return res.redirect("/");
+        });
+      }  
     })(req, res, next);
   },
 

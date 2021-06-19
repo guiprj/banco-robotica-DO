@@ -43,7 +43,11 @@
       <div class="col-sm-5">
         <div class="card cardImge">
           <div class="text-center">
-            <img src="<%= profile.avatar %>" alt="Perfil" />
+            <% if(profile.avatar != "http//") {%>
+              <img src="<%= profile.avatar %>" alt="Perfil" />
+            <%}else{%>
+              <img src="/images/moeda-robotica.png" alt="Perfil" />
+              <%}%>
             <h2>
               <%= profile.name %>
             </h2>
@@ -76,8 +80,8 @@
         </div>
 
         <main>
-          <% transactions.forEach(transactionUser => {%>
-            
+          <% if(transactions.length > 0) {
+            transactions.forEach(transactionUser => {%>
             <div class="col-sm-12 card-group">
               <div class="card cardList" data-id="">
                 <div class="dateColumn mb-4">
@@ -101,9 +105,7 @@
                           <small class="statusRed">Pedido em Aberto</small>
                           <%}else{%>
                             <small class="statusGreen">Pedido entregue</small>
-                        <%}%> 
-                          
-                       
+                        <%}%>         
                     </div>
                     <div class="card-profile card-body d-flex align-content-between flex-wrap">
                       <div class="nameColumn">
@@ -130,8 +132,25 @@
                 </div>
               </div>
             </div>
-            
             <%})%>
+            <%}else{%>
+              <div class="col-sm-12 card-group card text-center">
+                <div class="cardImge">
+                  <img src="/images/carinhatriste.png" alt="Carinha triste" />
+                </div>
+                <p>Trabalhe mais para fazer seu primeiro pedido!</p>
+                <div class="helpToBy">
+                  <h3>Algumas dicas para você ganhar + Makers</h3>
+                      <ul>
+                          <li>Estude bastante</li>
+                          <li>Faça bagunça só quando puder</li>
+                          <li>Foco total na explicação</li>
+                          <li>Poste nas redes sociais que ama robótica</li>
+                      </ul>
+                </div>
+              </div>
+            <%}%>
+           
             
 
         </main>

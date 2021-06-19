@@ -40,6 +40,12 @@
 						Login
 					</span>
 
+					<% if(msgErrorLogin){%>
+						<div class="alert alert-danger">
+							<%= msgErrorLogin %>
+						</div>
+					<%}%>
+
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input100" type="text" name="username" placeholder="@aluno_123">
 						<span class="focus-input100"></span>
@@ -72,6 +78,23 @@
 			</div>
 		</div>
 	</div>
+
+	<% if(registerSuccess){ %>
+		<div class="modalBalanceSuccess">
+			<div class="content-modalBalanceSuccess">
+				<!-- <div class="divImageMoeda">
+					<img src="images/moeda-robotica-success.png" alt="Pedido realizado com sucesso!">
+				</div> -->
+				<div class="alert alert-success" role="alert">
+					<%= registerSuccess %>
+				</div>
+				<div class="helpToBy">
+					<h3>Seja bem vindo ao nosso App!</h3>
+				</div>
+				<button class="btnMsgClose">x</button>
+			</div>
+		</div>
+		<%}%>
 	
 	
 
@@ -92,6 +115,7 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	<script src="/javascripts/script.js"></script>
 
 </body>
 </html>

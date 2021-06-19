@@ -23,6 +23,7 @@ routes.get("/profile", authenticationMiddleware, ProfilesController.get);
 routes.get("/", authenticationMiddleware, DashbordController.get);
 routes.post("/profile", authenticationMiddleware, ProfilesController.updateRegister);
 routes.get("/admin", authenticationMiddleware, AdminController.index);
+routes.get("/admin/searchresult", authenticationMiddleware, AdminController.searchApp);
 routes.post("/admin", authenticationMiddleware, AdminController.updateAmount);
 routes.post("/admin/users/delete", authenticationMiddleware, AdminController.deleteUsers);
 routes.get("/admin/register-products", authenticationMiddleware, ProductsController.getProducts);

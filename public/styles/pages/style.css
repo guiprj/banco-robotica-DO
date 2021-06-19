@@ -526,6 +526,7 @@ footer{
     justify-content: center;
     align-items: center;
     overflow: auto;
+    z-index: 9;
 }
 
 .content-modalBalanceError{
@@ -575,6 +576,24 @@ footer{
 .helpToBy{
     text-align: left;
     padding: 1rem;
+}
+
+.hide{
+    display: none;
+}
+
+#search{
+    height: 4rem;
+}
+
+#search::-webkit-input-placeholder{
+    font-size: 1rem;
+    font-style: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
+#amountBalance{
+    height: 4rem;
 }
 
 

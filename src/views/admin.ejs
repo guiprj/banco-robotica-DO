@@ -44,27 +44,22 @@
       <div class="separator"></div>
     </div>
   </header>
-  <div class="container-fluid">
-    <div class="btn-group d-flex align-content-between flex-wrap" role="group" aria-label="Basic example">
-      <button id="btnAdmin" type="button" class="btn btn-outline-info">Administrador</button>
-      <button id="btn5ano" type="button" class="btn btn-outline-info">Alunos 5° ano</button>
-      <button id="btn6ano" type="button" class="btn btn-outline-info">Alunos 6° ano</button>
-      <button id="btn7ano" type="button" class="btn btn-outline-info">Alunos 7° ano</button>
-      <button id="btn8ano" type="button" class="btn btn-outline-info">Alunos 8° ano</button>
-      <button id="btn9ano" type="button" class="btn btn-outline-info">Alunos 9° ano</button>
-    </div>
-  </div>
 
   <div class="container">
     <main class="animate-up delay-2">
       <div class=" text-center m-4">
         <h1>Alunos Cadastrados</h1>
       </div>
+      <div class="campSearch m-3">
+        <form action="/admin/searchresult" method="get">
+          <input id="search" type="search" name="search" placeholder="Pesquise pelo nome do aluno, Série ou Username">
+          <button class="btn btn-primary mt-3">Buscar</button>
+        </form>
+      </div>
+      
       <div class="row">
-
-        <% users.forEach((user)=> {
-          if(user.classroom === 1){%>
-          <div class="admin cards col-sm-6 card-group">
+        <% users.forEach((user)=> {%>
+          <div class="All cards col-sm-6 card-group">
             <div class="card card-body d-flex align-content-between flex-wrap" data-id="<%= user.id %>">
               <div class="Idcolumn">
                 <small>
@@ -98,267 +93,32 @@
                   <button class="btn btn-outline-secondary" id="pay" type="submit">Fazer Pagamento</button>
                 </div>
               </form>
+              <div class="editRequest">
+                <form action="/admin/users/delete" method="post" onsubmit="confirmDelUser(event, this)">
+                  <input type="hidden" name="id_UserDel" value="<%= user.id %>">
+                  <% if(user.id !=1){%>
+                    <button class="btn btn-danger">Excluir usuário</button>
+                    <%}%>
+                </form>
+              </div>
             </div>
           </div>
           <!-- end card -->
-          <%}%>
-            <% }) %>
+          <% }) %>
 
 
-              <% users.forEach((user)=> {
-                if(user.classroom === 5){%>
-                <div class="Alunos5Ano cards col-sm-6 card-group">
-                  <div class="card card-body d-flex align-content-between flex-wrap" data-id="<%= user.id %>">
-                    <div class="Idcolumn">
-                      <small>
-                        <%= user.id %>
-                      </small>
-                    </div>
-                    <div class="namecolumn1">
-                      <h2>
-                        <%= user.name %>
-                      </h2>
-                      <strong>
-                        <%= user.userName %>
-                      </strong><br>
-                      <strong>
-                        <%= user.classroom %>
-                      </strong><small> Série</small>
-                    </div>
-                    <div class="priceColumn">
-                      <span>Saldo total</span>
-                      <p>M <%= user.totalBalance %>
-                      </p>
-                    </div>
-                    <form id="pay" action="/admin" method="post">
-                      <div class="input-group mb-3 input-group-lg">
-                        <div class="input-group-prepend">
-                          <input type="number" id="amountBalanceId" name="amountId" value="<%= user.id %>"
-                            class="form-control">
-                          <span class="input-group-text" id="basic-addon1">M</span>
-                          <input type="number" id="amountBalance" name="amount" value="" class="form-control">
-                        </div>
-                        <button class="btn btn-outline-secondary" id="pay" type="submit">Fazer Pagamento</button>
-                      </div>
-                    </form>
-                    <div class="editRequest">
-                      <form action="/admin/users/delete" method="post" onsubmit="confirmDelUser(event, this)">
-                        <input type="hidden" name="id_UserDel" value="<%= user.id %>">
-                        <button class="btn btn-danger">Excluir usuário</button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-                <!-- end card -->
-                <%}%>
-                  <% }) %>
-
-                    <% users.forEach((user)=> {
-                      if(user.classroom === 6){%>
-                      <div class="Alunos6Ano cards col-sm-6 card-group">
-                        <div class="card card-body d-flex align-content-between flex-wrap" data-id="<%= user.id %>">
-                          <div class="Idcolumn">
-                            <small>
-                              <%= user.id %>
-                            </small>
-                          </div>
-                          <div class="namecolumn1">
-                            <h2>
-                              <%= user.name %>
-                            </h2>
-                            <strong>
-                              <%= user.userName %>
-                            </strong><br>
-                            <strong>
-                              <%= user.classroom %>
-                            </strong><small> Série</small>
-                          </div>
-                          <div class="priceColumn">
-                            <span>Saldo total</span>
-                            <p>M <%= user.totalBalance %>
-                            </p>
-                          </div>
-                          <form id="pay" action="/admin" method="post">
-                            <div class="input-group mb-3 input-group-lg">
-                              <div class="input-group-prepend">
-                                <input type="number" id="amountBalanceId" name="amountId" value="<%= user.id %>"
-                                  class="form-control">
-                                <span class="input-group-text" id="basic-addon1">M</span>
-                                <input type="number" id="amountBalance" name="amount" value="" class="form-control">
-                              </div>
-                              <button class="btn btn-outline-secondary" id="pay" type="submit">Fazer Pagamento</button>
-                            </div>
-                          </form>
-                          <div class="editRequest">
-                            <form action="/admin/users/delete" method="post" onsubmit="confirmDelUser(event, this)">
-                              <input type="hidden" name="id_UserDel" value="<%= user.id %>">
-                              <button class="btn btn-danger">Excluir usuário</button>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- end card -->
-                      <%}%>
-                        <% }) %>
 
 
-                          <% users.forEach((user)=> {
-                            if(user.classroom === 7){%>
-                            <div class="Alunos7Ano cards col-sm-6 card-group">
-                              <div class="card card-body d-flex align-content-between flex-wrap"
-                                data-id="<%= user.id %>">
-                                <div class="Idcolumn">
-                                  <small>
-                                    <%= user.id %>
-                                  </small>
-                                </div>
-                                <div class="namecolumn1">
-                                  <h2>
-                                    <%= user.name %>
-                                  </h2>
-                                  <strong>
-                                    <%= user.userName %>
-                                  </strong><br>
-                                  <strong>
-                                    <%= user.classroom %>
-                                  </strong><small> Série</small>
-                                </div>
-                                <div class="priceColumn">
-                                  <span>Saldo total</span>
-                                  <p>M <%= user.totalBalance %>
-                                  </p>
-                                </div>
-                                <form id="pay" action="/admin" method="post">
-                                  <div class="input-group mb-3 input-group-lg">
-                                    <div class="input-group-prepend">
-                                      <input type="number" id="amountBalanceId" name="amountId" value="<%= user.id %>"
-                                        class="form-control">
-                                      <span class="input-group-text" id="basic-addon1">M</span>
-                                      <input type="number" id="amountBalance" name="amount" value=""
-                                        class="form-control">
-                                    </div>
-                                    <button class="btn btn-outline-secondary" id="pay" type="submit">Fazer
-                                      Pagamento</button>
-                                  </div>
-                                </form>
-                                <div class="editRequest">
-                                  <form action="/admin/users/delete" method="post"
-                                    onsubmit="confirmDelUser(event, this)">
-                                    <input type="hidden" name="id_UserDel" value="<%= user.id %>">
-                                    <button class="btn btn-danger">Excluir usuário</button>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- end card -->
-                            <%}%>
-                              <% }) %>
 
 
-                                <% users.forEach((user)=> {
-                                  if(user.classroom === 8){%>
-                                  <div class="Alunos8Ano cards col-sm-6 card-group">
-                                    <div class="card card-body d-flex align-content-between flex-wrap"
-                                      data-id="<%= user.id %>">
-                                      <div class="Idcolumn">
-                                        <small>
-                                          <%= user.id %>
-                                        </small>
-                                      </div>
-                                      <div class="namecolumn1">
-                                        <h2>
-                                          <%= user.name %>
-                                        </h2>
-                                        <strong>
-                                          <%= user.userName %>
-                                        </strong><br>
-                                        <strong>
-                                          <%= user.classroom %>
-                                        </strong><small> Série</small>
-                                      </div>
-                                      <div class="priceColumn">
-                                        <span>Saldo total</span>
-                                        <p>M <%= user.totalBalance %>
-                                        </p>
-                                      </div>
-                                      <form id="pay" action="/admin" method="post">
-                                        <div class="input-group mb-3 input-group-lg">
-                                          <div class="input-group-prepend">
-                                            <input type="number" id="amountBalanceId" name="amountId"
-                                              value="<%= user.id %>" class="form-control">
-                                            <span class="input-group-text" id="basic-addon1">M</span>
-                                            <input type="number" id="amountBalance" name="amount" value=""
-                                              class="form-control">
-                                          </div>
-                                          <button class="btn btn-outline-secondary" id="pay" type="submit">Fazer
-                                            Pagamento</button>
-                                        </div>
-                                      </form>
-                                      <div class="editRequest">
-                                        <form action="/admin/users/delete" method="post"
-                                          onsubmit="confirmDelUser(event, this)">
-                                          <input type="hidden" name="id_UserDel" value="<%= user.id %>">
-                                          <button class="btn btn-danger">Excluir usuário</button>
-                                        </form>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <!-- end card -->
-                                  <%}%>
-                                    <% }) %>
 
 
-                                      <% users.forEach((user)=> {
-                                        if(user.classroom === 9){%>
-                                        <div class="Alunos9Ano cards col-sm-6 card-group">
-                                          <div class="card card-body d-flex align-content-between flex-wrap"
-                                            data-id="<%= user.id %>">
-                                            <div class="Idcolumn">
-                                              <small>
-                                                <%= user.id %>
-                                              </small>
-                                            </div>
-                                            <div class="namecolumn1">
-                                              <h2>
-                                                <%= user.name %>
-                                              </h2>
-                                              <strong>
-                                                <%= user.userName %>
-                                              </strong><br>
-                                              <strong>
-                                                <%= user.classroom %>
-                                              </strong><small> Série</small>
-                                            </div>
-                                            <div class="priceColumn">
-                                              <span>Saldo total</span>
-                                              <p>M <%= user.totalBalance %>
-                                              </p>
-                                            </div>
-                                            <form id="pay" action="/admin" method="post">
-                                              <div class="input-group mb-3 input-group-lg">
-                                                <div class="input-group-prepend">
-                                                  <input type="number" id="amountBalanceId" name="amountId"
-                                                    value="<%= user.id %>" class="form-control">
-                                                  <span class="input-group-text" id="basic-addon1">M</span>
-                                                  <input type="number" id="amountBalance" name="amount" value=""
-                                                    class="form-control">
-                                                </div>
-                                                <button class="btn btn-outline-secondary" id="pay" type="submit">Fazer
-                                                  Pagamento</button>
-                                              </div>
-                                            </form>
-                                            <div class="editRequest">
-                                              <form action="/admin/users/delete" method="post"
-                                                onsubmit="confirmDelUser(event, this)">
-                                                <input type="hidden" name="id_UserDel" value="<%= user.id %>">
-                                                <button class="btn btn-danger">Excluir usuário</button>
-                                              </form>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <!-- end card -->
-                                        <%}%>
-                                          <% }) %>
+
+
+
+
+
+
 
       </div>
       <!-- end cards -->
