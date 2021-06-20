@@ -89,8 +89,10 @@
                     <% 
                     let date = transactionUser.createdAt
                     let dateFormatted = date.toLocaleDateString('pt-BR', {timeZone: 'UTC'})
+                    let data_americana = dateFormatted
+                    let data_brasileira = data_americana.split('-').reverse().join('/');
                     %> 
-                    <%= dateFormatted  %> 
+                    <%= data_brasileira  %> 
                   </time>
                 </div>
                 <div class="row">

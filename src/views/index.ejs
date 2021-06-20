@@ -95,6 +95,21 @@
         </section>
 
     </main>
+
+    <% if(msgInsertQt){%>
+        <div class="modalBalanceError">
+            <div class="content-modalBalanceError">
+                <div class="alert alert-danger">
+                    <%= msgInsertQt %>
+                </div>
+                <div class="helpToBy">
+                    <h3>Insira no mínimo 1 quantidade para que possamos registrar o pedido com sucesso.</h3>
+                </div>
+                <button class="btnMsgClose">x</button>
+            </div>
+        </div>
+    <%}%>
+
     <% if(msgInsufficientFunds){ %>
         <div class="modalBalanceError">
             <div class="content-modalBalanceError">

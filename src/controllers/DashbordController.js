@@ -21,11 +21,18 @@ module.exports = {
         ? undefined
         : msgRequestSuccess;
 
+        let msgInsertQt = req.flash("msgInsertQt");
+        msgInsertQt =
+        msgInsertQt == undefined || msgInsertQt.length == 0
+            ? undefined
+            : msgInsertQt;
+
     return res.render("index", {
       profile: profile,
       products: products,
       msgInsufficientFunds: msgInsufficientFunds, 
-      msgRequestSuccess: msgRequestSuccess 
+      msgRequestSuccess: msgRequestSuccess,
+      msgInsertQt: msgInsertQt 
     });
   },
 
@@ -39,7 +46,7 @@ module.exports = {
     return res.render("byProduct", {
       profile: profile,
       products: products,
-      product: product,
+      product: product      
     });
   },
 
@@ -55,9 +62,13 @@ module.exports = {
     const valueProduct = priceProduct * qtNumber;
     let msgInsufficientFunds = "Saldo insuficiente";
     let msgRequestSuccess = "Pedido realizado com sucesso!";
+    let msgInsertQt = "Insira a quantidade";
 
     if (profile.totalBalance < valueProduct) {
       req.flash("msgInsufficientFunds", msgInsufficientFunds);
+      res.redirect("/");
+    }else if(qtNumber == "" || qtNumber == " " || qtNumber == 0){
+      req.flash("msgInsertQt", msgInsertQt);
       res.redirect("/");
     } else {
       const profile = await Profile.findOne({ where: { id: stringidUser } });

@@ -51,15 +51,17 @@
     <h2 class="m-2">Pedidos</h2>
     <div class="row">
       <% transactions.forEach((transactionUser)=> {
-        let date = transactionUser.createdAt;
-        let dateFormatted = date.toLocaleDateString("pt-BR", { timeZone: "UTC" })
+        let date = transactionUser.createdAt
+        let dateFormatted = date.toLocaleDateString('pt-BR', {timeZone: 'UTC'})
+        let data_americana = dateFormatted
+        let data_brasileira = data_americana.split('-').reverse().join('/');
         %>
 
         <div class="col-sm-6 card-group mt-3">
           <div class="card cardList" data-id="<%= transactionUser.id_Transaction %>">
             <div class="dateColumn">
               <time>
-                <%= dateFormatted %>
+                <%= data_brasileira %>
               </time>
             </div>
             <div class="row">
