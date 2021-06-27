@@ -92,7 +92,6 @@ function confirmDel(event, form) {
     form.submit();
   }
 }
-console.log("Oii");
 function confirmDelUser(event, form) {
   event.preventDefault();
 

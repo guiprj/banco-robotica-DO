@@ -558,6 +558,17 @@ footer{
     z-index: 9999;
 }
 
+@media only screen and (max-width: 400px) {
+    #msgDanger{
+        width: 40vh !important;
+    }
+
+    #msgSuccess{
+        width: 40vh !important;
+    }
+  }
+
+
 #msgSuccess{
     position: absolute;
     top: 10px;
