@@ -35,7 +35,6 @@ module.exports = {
         let registerSuccess = "Cadastro realizado com sucesso!"
 
         if(userFound){
-            console.log(userFound)
             req.flash("userExist", userExist);
             res.redirect("/register");
         }else if(classroom.length > 1){

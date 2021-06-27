@@ -5,6 +5,11 @@
 	<title>Cadastro</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 	<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
 	<!--===============================================================================================-->
@@ -23,9 +28,29 @@
 	<!--===============================================================================================-->
 	<link rel="stylesheet" href="/styles/pages/style.css">
 
+	<script src="https://kit.fontawesome.com/332cf39b4a.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
+
+	<% if(userExist){%>
+		<div id="msgDanger" class="animate__animated animate__bounceInRight alert alert-danger">
+			<%= userExist %>
+			<div id="myProgress">
+				<div id="myBar"></div>
+			</div>
+		</div>
+	<%}%>
+
+	<% if(classroomError){%>
+		<div id="msgDanger" class="animate__animated animate__bounceInRight alert alert-danger">
+			<%= classroomError %>
+			<div id="myProgress">
+				<div id="myBar"></div>
+			</div>
+		</div>
+	<%}%>
 
 	<div class="limiter">
 		<div class="container-login100 container-loginGB">
@@ -47,22 +72,16 @@
 							placeholder="Nome">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<!-- <i class="fa fa-envelope" aria-hidden="true"></i> -->
+							<i class="fas fa-id-card-alt"></i>
 						</span>
 					</div>
-
-					<% if(userExist){%>
-						<div class="alert alert-danger">
-							<%= userExist %>
-						</div>
-					<%}%>
 
 					<div class="wrap-input100 validate-input">
 						<input class="input100" id="user_cad" name="user_cad" required="required" type="text"
 							placeholder="username Ex:@aluno_123">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<!-- <i class="fa fa-lock" aria-hidden="true"></i> -->
+							<i class="far fa-user-circle"></i>
 						</span>
 					</div>
 
@@ -71,22 +90,16 @@
 							placeholder="Digite sua senha">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<!-- <i class="fa fa-lock" aria-hidden="true"></i> -->
+							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
-
-					<% if(classroomError){%>
-						<div class="alert alert-danger">
-							<%= classroomError %>
-						</div>
-					<%}%>
 
 					<div class="wrap-input100 validate-input">
 						<input class="input100" id="classroom_cad" name="classroom_cad" required="required"
 							type="number" placeholder="Série Ex: 5,6,7,8,9">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<!-- <i class="fa fa-lock" aria-hidden="true"></i> -->
+							<i class="fas fa-graduation-cap"></i>
 						</span>
 					</div>
 
@@ -127,6 +140,7 @@
 	</script>
 	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	<script src="/javascripts/script.js"></script>
 
 </body>
 

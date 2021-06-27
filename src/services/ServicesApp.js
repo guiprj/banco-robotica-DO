@@ -14,7 +14,7 @@ const AppSearch = {
       console.error(err);
       return [];
     }
-  },
+  }
 };
 
 module.exports = AppSearch;

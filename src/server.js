@@ -14,7 +14,7 @@ const cookieParser = require("cookie-parser");
 (async () => {
   const database = require('./db/config');
   try {
-      const resultado = await database.sync();     
+      const resultado = await database.sync();
   } catch (error) {
       console.log(error);
   }
@@ -29,7 +29,7 @@ server.use(
     secret: process.env.SECRET_SESSION,
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 10 * 60 * 1000 },
+    cookie: { maxAge: 20 * 60 * 1000 },
   })
 );
 

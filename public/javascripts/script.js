@@ -119,4 +119,28 @@ function confirmSuccess(event, form) {
     form.submit();
   }
 }
-confirmDelProduct;
+
+//===================== código para mensagens de tartamento =====================
+let progressSlideDanger = document.querySelector('#msgDanger')
+let progressSlideSuccess = document.querySelector('#msgSuccess')
+
+function move(div) {
+  var elem = document.getElementById("myBar");   
+  var width = 1;
+  var id = setInterval(frame, 60);
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+      div.classList.remove("animate__animated", "animate__bounceInRight")
+      div.classList.add("animate__animated", "animate__backOutRight")
+    } else {
+      width++; 
+      elem.style.width = width + '%'; 
+    }
+  }
+}
+
+move(progressSlideDanger)
+move(progressSlideSuccess)
+
+

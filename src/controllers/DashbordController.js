@@ -1,13 +1,14 @@
 const Profile = require("../model/Profile");
 const Product = require("../model/Product");
 const Transaction = require("../model/Transaction");
+const Public = require("../model/Public");
 
 module.exports = {
   async get(req, res) {
     const stringidUser = req.user.id;
     const profile = await Profile.findOne({ where: { id: stringidUser } });
-    console.log(profile);
     const products = await Product.findAll();
+    const transactions = await Transaction.findAll({where:{id_Aluno: stringidUser}})
 
     let msgInsufficientFunds = req.flash("msgInsufficientFunds");
     msgInsufficientFunds =
@@ -32,7 +33,8 @@ module.exports = {
       products: products,
       msgInsufficientFunds: msgInsufficientFunds, 
       msgRequestSuccess: msgRequestSuccess,
-      msgInsertQt: msgInsertQt 
+      msgInsertQt: msgInsertQt,
+      transactions: transactions 
     });
   },
 
