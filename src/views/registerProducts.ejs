@@ -72,6 +72,49 @@
       </div>
       <!-- end cards -->
     </main>
+
+    <h2 class="m-2">Editar produtos</h2>
+
+    <section id="transaction">
+      <div class="row">
+        <% products.forEach((product)=> { %>
+          <div class="col-sm-6 card-group">
+            <div class="card cardList" data-id="<%= product.id %>">
+              <div class="card-body d-flex align-content-between flex-wrap">
+                <div class="Idcolumn">
+                  <small>
+                    <%= product.id %>
+                  </small>
+                </div>
+                <div class="imageColumn">
+                  <img src="<%= product.imageProduct %>">
+                </div>
+                <div class="nameColumn">
+                  <h4>
+                    <%= product.nameProduct %>
+                  </h4>
+                </div>
+              </div>
+              <div class="priceColumn">
+                <span>Por:</span>
+                <strong><img src="/images/Sifrão-Maker.png" alt="Imagem de total">
+                  <%= product.priceProduct %>
+                </strong>
+              </div>
+              <div class="editRequest">
+                <form action="/admin/delete-products" method="post">
+                  <input type="hidden" name="id_ProductDel" value="<%= product.id %>">
+                  <button class="btn btn-danger">Excluir Produto</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- end card -->
+          <% }) %>
+      </div>
+
+      <!--  </div> -->
+    </section>
   </div>
   <!-- end container -->
   <script src="/javascripts/script.js"></script>

@@ -31,6 +31,7 @@ routes.get("/admin/searchresult", authenticationMiddleware, AdminController.sear
 routes.post("/admin/users/delete", authenticationMiddleware, AdminController.deleteUsers);
 routes.get("/admin/register-products", authenticationMiddleware, ProductsController.getProducts);
 routes.post("/admin/register-products", authenticationMiddleware, ProductsController.insertProducts);
+routes.post("/admin/delete-products", authenticationMiddleware, ProductsController.deleteProducts);
 routes.get("/admin/requests", authenticationMiddleware, TransactionsController.getTransactions);
 routes.post("/admin/requests", authenticationMiddleware, TransactionsController.updateTransaction);
 routes.post("/admin/requests/delete", authenticationMiddleware, TransactionsController.deleteTransaction);

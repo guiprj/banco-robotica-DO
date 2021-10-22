@@ -31,7 +31,6 @@ module.exports = {
 
   async deleteProducts(req, res) {
     const idProductDel = req.body.id_ProductDel
-    console.log("O id do produto é "+idProductDel)
     if(idProductDel !== undefined){
         if(!isNaN(idProductDel)){
          await Product.destroy({where: {id: idProductDel}})
