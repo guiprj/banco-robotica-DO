@@ -2,13 +2,21 @@ const Profile = require("../model/Profile");
 const Product = require("../model/Product");
 const Transaction = require("../model/Transaction");
 const Public = require("../model/Public");
+const Quiz = require("../model/Quiz");
+const Ranking = require("../model/Ranking");
 
 module.exports = {
   async get(req, res) {
     const stringidUser = req.user.id;
     const profile = await Profile.findOne({ where: { id: stringidUser } });
     const products = await Product.findAll();
-    const transactions = await Transaction.findAll({where:{id_Aluno: stringidUser}})
+    const transactions = await Transaction.findAll({
+      where: { id_Aluno: stringidUser },
+    });
+    const quiz = await Quiz.findOne({ where: { id_AlunoQuiz: stringidUser } });
+    const ranking = await Ranking.findOne({
+      where: { idAlunoRanking: stringidUser },
+    });
 
     let msgInsufficientFunds = req.flash("msgInsufficientFunds");
     msgInsufficientFunds =
@@ -16,25 +24,39 @@ module.exports = {
         ? undefined
         : msgInsufficientFunds;
 
-        let msgRequestSuccess = req.flash("msgRequestSuccess");
-        msgRequestSuccess =
-        msgRequestSuccess == undefined || msgRequestSuccess.length == 0
+    let msgRequestSuccess = req.flash("msgRequestSuccess");
+    msgRequestSuccess =
+      msgRequestSuccess == undefined || msgRequestSuccess.length == 0
         ? undefined
         : msgRequestSuccess;
 
-        let msgInsertQt = req.flash("msgInsertQt");
-        msgInsertQt =
-        msgInsertQt == undefined || msgInsertQt.length == 0
-            ? undefined
-            : msgInsertQt;
+    let msgInsertQt = req.flash("msgInsertQt");
+    msgInsertQt =
+      msgInsertQt == undefined || msgInsertQt.length == 0
+        ? undefined
+        : msgInsertQt;
+
+    if (quiz === null) {
+      Quiz.create({
+        quiz: 0,
+        id_AlunoQuiz: stringidUser,
+        statusQuiz: 0,
+      });
+    }
+    if (ranking === null) {
+      Ranking.create({
+        totalPoints: 0,
+        idAlunoRanking: stringidUser,
+      });
+    }
 
     return res.render("index", {
       profile: profile,
       products: products,
-      msgInsufficientFunds: msgInsufficientFunds, 
+      msgInsufficientFunds: msgInsufficientFunds,
       msgRequestSuccess: msgRequestSuccess,
       msgInsertQt: msgInsertQt,
-      transactions: transactions 
+      transactions: transactions,
     });
   },
 
@@ -48,7 +70,7 @@ module.exports = {
     return res.render("byProduct", {
       profile: profile,
       products: products,
-      product: product      
+      product: product,
     });
   },
 
@@ -69,7 +91,7 @@ module.exports = {
     if (profile.totalBalance < valueProduct) {
       req.flash("msgInsufficientFunds", msgInsufficientFunds);
       res.redirect("/");
-    }else if(qtNumber == "" || qtNumber == " " || qtNumber == 0){
+    } else if (qtNumber == "" || qtNumber == " " || qtNumber == 0) {
       req.flash("msgInsertQt", msgInsertQt);
       res.redirect("/");
     } else {

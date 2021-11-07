@@ -6,8 +6,10 @@ const DashbordController = require("./controllers/DashbordController");
 const ProfilesController = require("./controllers/ProfilesController");
 const AdminController = require("./controllers/AdminController");
 const ProductsController = require("./controllers/ProductsController");
+const QuestionsController = require("./controllers/QuestionsController");
 const TransactionsController = require("./controllers/TransactionsController");
 const PublicsController = require("./controllers/PublicsController");
+const QuizzesController = require("./controllers/QuizController");
 
 
 function authenticationMiddleware(req, res, next) {  
@@ -25,6 +27,13 @@ routes.get("/profile", authenticationMiddleware, ProfilesController.get);
 routes.post("/profile", authenticationMiddleware, ProfilesController.updateRegister);
 routes.get("/created-publics", authenticationMiddleware, PublicsController.get);
 routes.post("/created-publics", authenticationMiddleware, PublicsController.publicCreate);
+routes.get("/quiz", authenticationMiddleware, QuizzesController.get);
+routes.post("/start-quiz", authenticationMiddleware, QuizzesController.updateQuiz);
+routes.get("/question-quiz", authenticationMiddleware, QuizzesController.getQuestions);
+routes.post("/respost-question", authenticationMiddleware, QuizzesController.registerQuestion);
+routes.get("/question-quiz/sequence/:id", authenticationMiddleware, QuizzesController.getQuestions2);
+routes.get("/congratulations", authenticationMiddleware, QuizzesController.getCongratulations);
+routes.post("/respost-question/sequence", authenticationMiddleware, QuizzesController.registerQuestion2);
 routes.get("/admin", authenticationMiddleware, AdminController.index);
 routes.post("/admin", authenticationMiddleware, AdminController.updateAmount);
 routes.get("/admin/searchresult", authenticationMiddleware, AdminController.searchApp);
@@ -32,6 +41,13 @@ routes.post("/admin/users/delete", authenticationMiddleware, AdminController.del
 routes.get("/admin/register-products", authenticationMiddleware, ProductsController.getProducts);
 routes.post("/admin/register-products", authenticationMiddleware, ProductsController.insertProducts);
 routes.post("/admin/delete-products", authenticationMiddleware, ProductsController.deleteProducts);
+routes.get("/admin/register-questions", authenticationMiddleware, QuestionsController.getQuestions);
+routes.get("/admin/edit-questions/:id", authenticationMiddleware, QuestionsController.getQuestion);
+routes.post("/admin/register-questions", authenticationMiddleware, QuestionsController.insertQuestion);
+routes.post("/admin/register-answer", authenticationMiddleware, QuestionsController.insertAnswer);
+routes.post("/admin/delete-question", authenticationMiddleware, QuestionsController.deleteQuestion);
+routes.get("/admin/ranking", authenticationMiddleware, QuizzesController.getRanking);
+routes.post("/admin/rankingAndQuiz-delete", authenticationMiddleware, QuizzesController.deleteRankingAndQuiz);
 routes.get("/admin/requests", authenticationMiddleware, TransactionsController.getTransactions);
 routes.post("/admin/requests", authenticationMiddleware, TransactionsController.updateTransaction);
 routes.post("/admin/requests/delete", authenticationMiddleware, TransactionsController.deleteTransaction);
