@@ -1,4 +1,5 @@
 const Profile = require("../model/Profile");
+const Transaction = require("../model/Transaction");
 const { Op } = require("sequelize");
 
 const AppSearch = {
@@ -10,6 +11,21 @@ const AppSearch = {
         },
       });
       return appSearchStudants;
+    } catch (err) {
+      console.error(err);
+      return [];
+    }
+  },
+
+  async searchRequest(query) {
+    console.log(query)
+    try {
+      let appSearchRequests = await Transaction.findAll({
+        where: {
+          [Op.or]: [{ nameAluno: query }, { usernameAluno: query }, {classroomAluno: query}, {status: query}],
+        },
+      });
+      return appSearchRequests;
     } catch (err) {
       console.error(err);
       return [];

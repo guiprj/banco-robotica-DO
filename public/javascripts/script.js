@@ -119,6 +119,12 @@ function confirmSuccess(event, form) {
   }
 }
 
+$("#btnQuizGb").click(function (e) {
+  e.preventDefault()
+  alert("Infelizmente o prazo se esgotou :(")
+});
+
+
 //===================== código para mensagens de tartamento =====================
 let progressSlideDanger = document.querySelector("#msgDanger");
 let progressSlideSuccess = document.querySelector("#msgSuccess");

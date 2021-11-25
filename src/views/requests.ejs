@@ -48,6 +48,12 @@
   </header>
 
   <div class="container">
+    <div class="campSearch m-3">
+      <form action="/admin/searchresultRequest" method="get">
+        <input id="search" type="search" name="search" placeholder="Pesquise pelo nome do aluno, Série ou Username">
+        <button class="btn btn-primary mt-3">Buscar</button>
+      </form>
+    </div>
     <h2 class="m-2">Pedidos</h2>
     <div class="row">
       <% transactions.forEach((transactionUser)=> {

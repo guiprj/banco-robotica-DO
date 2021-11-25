@@ -37,6 +37,7 @@ routes.post("/respost-question/sequence", authenticationMiddleware, QuizzesContr
 routes.get("/admin", authenticationMiddleware, AdminController.index);
 routes.post("/admin", authenticationMiddleware, AdminController.updateAmount);
 routes.get("/admin/searchresult", authenticationMiddleware, AdminController.searchApp);
+routes.get("/admin/searchresultRequest", authenticationMiddleware, TransactionsController.searchAppRequest);
 routes.post("/admin/users/delete", authenticationMiddleware, AdminController.deleteUsers);
 routes.get("/admin/register-products", authenticationMiddleware, ProductsController.getProducts);
 routes.post("/admin/register-products", authenticationMiddleware, ProductsController.insertProducts);

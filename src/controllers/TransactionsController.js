@@ -1,4 +1,5 @@
 const Transaction = require("../model/Transaction");
+const Services = require("../services/ServicesApp");
 const Profile = require("../model/Profile");
 
 module.exports = {
@@ -12,6 +13,11 @@ module.exports = {
     }
 
     return res.render("requests", { transactions: transactions });
+  },
+
+  async searchAppRequest(req, res){
+    let transactions = await Services.searchRequest(req.query.search)
+    res.render("requests", { transactions: transactions });
   },
 
   async updateTransaction(req, res) {
