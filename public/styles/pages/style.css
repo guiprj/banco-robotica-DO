@@ -1482,6 +1482,17 @@ input#repost {
 
 .positionRanking {
     font-size: 1.5rem;
+    flex: 1;
+    margin-left: 12px;
+}
+
+.image-alunoRanking {
+    flex: 1;
+}
+
+.infouser-alunoRanking {
+    flex: 10;
+    margin-left: 12px;
 }
 
 .container-ranking {
