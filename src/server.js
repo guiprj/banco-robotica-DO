@@ -54,5 +54,5 @@ server.use(express.urlencoded({ extended: true }));
 
 server.use(routes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 80;
 server.listen(PORT, () => console.log("rodando"));
