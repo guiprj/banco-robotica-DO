@@ -7,7 +7,7 @@ const Sequelize = require('sequelize')
   timezone: "-03:00"
 }) */
 
-const connection = new Sequelize('bancorobotica', 'root', 'dvs2208612', {
+const connection = new Sequelize('bancorobotica', 'guiprj', 'dvs2208612', {
   host: 'localhost',
   dialect: 'mysql',
   freezeTableName: true,
