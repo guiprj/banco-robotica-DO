@@ -10,6 +10,7 @@ const QuestionsController = require("./controllers/QuestionsController");
 const TransactionsController = require("./controllers/TransactionsController");
 const PublicsController = require("./controllers/PublicsController");
 const QuizzesController = require("./controllers/QuizController");
+const PaymentsController = require("./controllers/PaymentsController");
 
 
 function authenticationMiddleware(req, res, next) {  
@@ -34,6 +35,9 @@ routes.post("/respost-question", authenticationMiddleware, QuizzesController.reg
 routes.get("/question-quiz/sequence/:id", authenticationMiddleware, QuizzesController.getQuestions2);
 routes.get("/congratulations", authenticationMiddleware, QuizzesController.getCongratulations);
 routes.post("/respost-question/sequence", authenticationMiddleware, QuizzesController.registerQuestion2);
+routes.get("/payments", authenticationMiddleware, PaymentsController.getKeyPix);
+routes.post("/registerPix", authenticationMiddleware, PaymentsController.registerPix);
+routes.post("/pay", authenticationMiddleware, PaymentsController.pay);
 routes.get("/admin", authenticationMiddleware, AdminController.index);
 routes.post("/admin", authenticationMiddleware, AdminController.updateAmount);
 routes.get("/admin/searchresult", authenticationMiddleware, AdminController.searchApp);
@@ -52,6 +56,7 @@ routes.post("/admin/rankingAndQuiz-delete", authenticationMiddleware, QuizzesCon
 routes.get("/admin/requests", authenticationMiddleware, TransactionsController.getTransactions);
 routes.post("/admin/requests", authenticationMiddleware, TransactionsController.updateTransaction);
 routes.post("/admin/requests/delete", authenticationMiddleware, TransactionsController.deleteTransaction);
+routes.get("/admin/transactions", authenticationMiddleware, TransactionsController.getAllTransactions);
 routes.post("/like", authenticationMiddleware, PublicsController.like);
 routes.get("/publics", authenticationMiddleware, PublicsController.getPublics);
 routes.get("/publics/page/:num", authenticationMiddleware, PublicsController.getPagePublics);

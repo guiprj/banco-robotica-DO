@@ -80,6 +80,13 @@
                         <%= profile.totalBalance %>
                     </p>
                 </div>
+                <div>
+                    <a style="width:100%; font-size: 100%;" class="btn btn-light btn-lg" href="/payments">
+                        <img style="width:30px;" src="https://img.icons8.com/external-itim2101-blue-itim2101/64/000000/external-pay-financial-itim2101-blue-itim2101.png"/>
+                        
+                        Fazer pagamento
+                    </a>
+                </div>
             </div>
 
         </section>
@@ -116,12 +123,12 @@
                 <% products.forEach((product)=> { %>
                     <div class="col-sm-6 card-group">
                         <div class="card cardList" data-id="<%= product.id %>">
+                            <div class="imageColumn">
+                                <img src="<%= product.imageProduct %>">
+                            </div>
                             <div class="card-body d-flex align-content-between flex-wrap">
                                 
-                                <div class="imageColumn">
-                                    <img src="<%= product.imageProduct %>">
-                                </div>
-                                <div class="nameColumn">
+                                <div class="nameColumn text-center">
                                     <h4>
                                         <%= product.nameProduct %>
                                     </h4>
@@ -133,9 +140,9 @@
                                     <%= product.priceProduct %>
                                 </strong>
                             </div>
-                            <div class="btn-by">
-                                <a href="/<%= product.id %> " class="">Comprar</a>
-                            </div>
+                            <a href="/<%= product.id %> " class="btn-by">Comprar
+                                
+                            </a>
                         </div>
                     </div>
                     <!-- end card -->

@@ -4,6 +4,7 @@ const Transaction = require("../model/Transaction");
 const Public = require("../model/Public");
 const Quiz = require("../model/Quiz");
 const Ranking = require("../model/Ranking");
+const KeyPix = require("../model/KeyPix");
 
 module.exports = {
   async get(req, res) {
@@ -16,6 +17,9 @@ module.exports = {
     const quiz = await Quiz.findOne({ where: { id_AlunoQuiz: stringidUser } });
     const ranking = await Ranking.findOne({
       where: { idAlunoRanking: stringidUser },
+    });
+    const key = await KeyPix.findOne({
+      where: { keyPix_IdAluno: stringidUser },
     });
 
     let msgInsufficientFunds = req.flash("msgInsufficientFunds");
@@ -35,6 +39,13 @@ module.exports = {
       msgInsertQt == undefined || msgInsertQt.length == 0
         ? undefined
         : msgInsertQt;
+
+    if (key === null) {
+      KeyPix.create({
+        keyPix_IdAluno: stringidUser,
+        keyPix: 0,
+      });
+    }
 
     if (quiz === null) {
       Quiz.create({

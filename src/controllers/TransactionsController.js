@@ -1,6 +1,7 @@
 const Transaction = require("../model/Transaction");
 const Services = require("../services/ServicesApp");
 const Profile = require("../model/Profile");
+const TransactionPay = require("../model/TransactionPay")
 
 module.exports = {
   async getTransactions(req, res) {
@@ -43,5 +44,19 @@ module.exports = {
     }else{
       res.redirect("/admin/requests");
     }
+  },
+
+  async getAllTransactions(req, res) {
+    const stringidUser = req.user.id;
+    const admin = stringidUser === 1;
+    const transactions = await TransactionPay.findAll({
+      order: [["createdAt", "DESC"]],
+    });
+
+    if (!admin) {
+      res.redirect("/");
+    }
+
+    return res.render("transactions", { transactions: transactions });
   },
 };

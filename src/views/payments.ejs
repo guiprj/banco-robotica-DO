@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#41414C" />
+  <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
+  <title>Perfil</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/partials/page-header.css" />
+  <link rel="stylesheet" href="/styles/partials/cards.css" />
+  <link rel="stylesheet" href="/styles/partials/buttons.css" />
+  <link rel="stylesheet" href="/styles/partials/forms.css" />
+  <link rel="stylesheet" href="/styles/partials/animations.css" />
+  <link rel="stylesheet" href="/styles/pages/profile.css" />
+  <link rel="stylesheet" href="/styles/pages/style.css">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' rel='stylesheet'
+    type='text/css'>
+  <link rel="stylesheet"
+    href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+
+<body id="page-profile">
+
+  <% if(msgkeynotallowed){%>
+    <div id="msgDanger" class="animate__animated animate__bounceInRight alert alert-danger">
+      <%= msgkeynotallowed %>
+        <div id="myProgress">
+          <div id="myBar"></div>
+        </div>
+    </div>
+    <%}%>
+
+      <% if(msgkeyexist){%>
+        <div id="msgDanger" class="animate__animated animate__bounceInRight alert alert-danger">
+          <%= msgkeyexist %>
+            <div id="myProgress">
+              <div id="myBar"></div>
+            </div>
+        </div>
+        <%}%>
+
+          <% if(msgkeysuccess){ %>
+            <div id="msgSuccess" class="animate__animated animate__bounceInRight alert alert-success" role="alert">
+              <%= msgkeysuccess %>
+                <div id="myProgress">
+                  <div id="myBar"></div>
+                </div>
+            </div>
+            <%}%>
+
+              <% if(payFailed){%>
+                <div id="msgDanger" class="animate__animated animate__bounceInRight alert alert-danger">
+                  <%= payFailed %>
+                    <div id="myProgress">
+                      <div id="myBar"></div>
+                    </div>
+                </div>
+                <%}%>
+
+                  <% if(paySuccess){ %>
+                    <div id="msgSuccess" class="animate__animated animate__bounceInRight alert alert-success"
+                      role="alert">
+                      <%= paySuccess %>
+                        <div id="myProgress">
+                          <div id="myBar"></div>
+                        </div>
+                    </div>
+                    <%}%>
+
+                      <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+                        <a class="navbar-brand" href="/">
+                          <img src="/images/moeda-robotica.png" width="30" height="30" alt="">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                          <ul class="navbar-nav">
+                            <li class="nav-item">
+                              <a class="nav-link" href="/">Banco<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                              <a class="nav-link" href="/profile">Perfil</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="/publics">Publicações</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="/created-publics">Criar publicação</a>
+                            </li>
+                          </ul>
+                          <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                              <a class="nav-link" href="/logout">Sair</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </nav>
+
+                      <div class="container-fluid ptGb-100 animate-up delay-2">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="card">
+                              <% if(key.keyPix==0) {%>
+                                <div class="">
+                                  <h2 class="">Cadastre sua chave Maker</h2>
+                                </div>
+                                <div class="">
+                                  <form id="form-registePix" method="post" action="/registerPix">
+                                    <div class="input-group mb-3 input-group-lg">
+                                      <input type="text" id="pix" name="keyPixAluno" value="" class="form-control"
+                                        placeholder="Insira sua chave maker">
+                                    </div>
+                                  </form>
+                                  <button class="btn btn-light btn-block" form="form-registePix" type="submit">
+                                    <img src="https://img.icons8.com/ios-glyphs/30/000000/save--v2.png" /> Salvar
+                                  </button>
+                                </div>
+                                <%}else{%>
+                                  <div class="">
+                                    <h3 class="">Minha chave maker</h3>
+                                  </div>
+                                  <div class="mykey">
+                                    <strong>
+                                      <%= key.keyPix %>
+                                    </strong>
+                                  </div>
+                                  <div class="form-updateKey">
+                                    <form id="form-registePix" method="post" action="/registerPix">
+                                      <div class="input-group mb-3 input-group-lg">
+                                        <input type="text" id="pix" name="keyPixAluno" value="" class="form-control"
+                                          placeholder="Insira uma nova chave maker">
+                                      </div>
+                                    </form>
+                                    <div class="content-btn-updateKey">
+                                      <div class="">
+                                        <button class="btn btn-light btn-block" form="form-registePix" type="submit">
+                                          <img src="https://img.icons8.com/ios-glyphs/30/000000/save--v2.png" /> Salvar
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                            </div>
+
+                            <div class="card">
+                              <div class="row">
+                                <div class="col-sm-6">
+                                  <h3 class="">Fazer pagamento</h3>
+                                </div>
+                                <div class="col-sm-6">
+                                  <div class="">
+                                    <small>Meu saldo </small>
+                                    <strong>
+                                      <img style="width: 30px;" src="/images/Sifrão-Maker.png" alt="Imagem de total">
+                                      <%= profile.totalBalance %>
+                                    </strong>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="form-updateKey">
+                                <form id="form-pay" method="post" action="/pay">
+                                  <div class="input-group mb-3 input-group-lg">
+                                    <input type="text" id="pixPay" name="keyPixAlunoPay" value="" class="form-control"
+                                      placeholder="Insira a chave Maker">
+                                  </div>
+                                  <div class="input-group mb-3 input-group-lg">
+                                    <input type="number" id="pix" name="valuePixPay" value="" class="form-control"
+                                      placeholder="Insira o valor">
+                                  </div>
+                                </form>
+                                <div class="content-btn-updateKey">
+                                  <div class="">
+                                    <button class="btn btn-light btn-block" form="form-pay" type="submit">
+                                      <img style="width:30px;"
+                                        src="https://img.icons8.com/external-itim2101-lineal-itim2101/64/000000/external-pay-currency-and-money-itim2101-lineal-itim2101.png" />
+                                      Pagar
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <%}%>
+                          </div>
+                          <div class="col-sm-6">
+
+                            <% profileTransactions.forEach((profileTransaction)=>{
+                              let date = profileTransaction.createdAt
+                              let dateFormatted = date.toLocaleDateString('pt-BR', {timeZone: 'UTC'})
+                              let data_americana = dateFormatted
+                              let data_brasileira = data_americana.split('-').reverse().join('/');
+                              if(profileTransaction.idPayingStudent == profile.id){  %>
+                              <div class="card">
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="container-datePay">
+                                      <div class="content-datePay">
+                                          <p>
+                                            <img style="width:30px;" src="https://img.icons8.com/dotty/80/000000/pay-date.png"/>
+                                            <%= data_brasileira%>
+                                          </p>
+                                      </div>
+                                      <div class="content-statusPay">
+                                        <img style="width:30px;" src="https://img.icons8.com/external-xnimrodx-lineal-color-xnimrodx/64/000000/external-price-down-sale-and-shopping-xnimrodx-lineal-color-xnimrodx.png"/>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="container-pay">
+                                    <div class="content-receiving">
+                                      <p>
+                                        <%= profileTransaction.userNameReceiving%>
+                                      </p>
+                                    </div>
+                                    <div class="content-valuePay">
+                                      <p>
+                                        <img style="width: 30px;" src="/images/Sifrão-Maker.png" alt="Imagem de total">
+                                        -<%= profileTransaction.valueTransaction%>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <%} else {%>
+                                <div class="card">
+                                  <div class="row">
+                                    <div class="col-sm-12">
+                                      <div class="container-datePay">
+                                        <div class="content-datePay">
+                                          <p>
+                                            <img style="width:30px;" src="https://img.icons8.com/dotty/80/000000/pay-date.png"/>
+                                            <%= data_brasileira%>
+                                          </p>
+                                        </div>
+                                        <div class="content-statusPay">
+                                          <img style="width: 30px;" src="https://img.icons8.com/external-xnimrodx-lineal-color-xnimrodx/64/000000/external-price-up-sale-and-shopping-xnimrodx-lineal-color-xnimrodx.png"/>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="container-pay">
+                                      <div class="content-pay">
+                                        <p>
+                                          <%= profileTransaction.userNamePay%>
+                                        </p>
+                                      </div>
+                                      <div class="content-valuePay">
+                                        <p>
+                                          <img style="width: 30px;" src="/images/Sifrão-Maker.png" alt="Imagem de total">
+                                          <%= profileTransaction.valueTransaction%>
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <%}})%>
+
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                        crossorigin="anonymous"></script>
+                      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                        crossorigin="anonymous"></script>
+                      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                        crossorigin="anonymous"></script>
+                      <script src="/javascripts/script.js"></script>
+</body>
+
+</html>

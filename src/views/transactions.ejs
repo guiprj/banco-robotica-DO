@@ -30,7 +30,8 @@
 
 <body id="page-index">
   <header class="page-header">
-   
+    <div class="btnGroup">
+    </div>
     <div class="container">
       <div class="animate-up">
         <h1 id="logo">Banco Robótica</h1>
@@ -41,7 +42,7 @@
           <a id="btnindex" class="btn btn-secondary btn-block" href="/" class="back">Home</a>
         </li>
         <li class="list-group-item">
-          <a id="btnindex" class="btn btn-secondary btn-block" href="/admin/register-products" class="back">Produtos</a>
+          <a id="btnindex" class="btn btn-secondary btn-block" href="/admin" class="back">Cadastro de alunos</a>
         </li>
         <li class="list-group-item">
           <a id="btnindex" class="btn btn-secondary btn-block" href="/admin/register-questions" class="back">Quiz</a>
@@ -50,7 +51,7 @@
           <a id="btnindex" class="btn btn-secondary btn-block" href="/admin/requests" class="back">Pedidos</a>
         </li>
         <li class="list-group-item">
-          <a id="btnindex" class="btn btn-secondary btn-block" href="/admin/transactions" class="back">Transações</a>
+          <a id="btnindex" class="btn btn-secondary btn-block" href="/admin/register-products" class="back">Produtos</a>
         </li>
       </ul>
     </div>
@@ -59,63 +60,55 @@
   <div class="container">
     <main class="animate-up delay-2">
       <div class=" text-center m-4">
-        <h1>Alunos Cadastrados</h1>
-      </div>
-      <div class="campSearch m-3">
-        <form action="/admin/searchresult" method="get">
-          <input id="search" type="search" name="search" placeholder="Pesquise pelo nome do aluno, Série ou Username">
-          <button class="btn btn-primary mt-3">Buscar</button>
-        </form>
+        <h1>Transações realizadas</h1>
       </div>
       
       <div class="row">
-        <% users.forEach((user)=> {%>
-          <div class="All cards col-sm-6 card-group">
-            <div class="card card-body d-flex align-content-between flex-wrap" data-id="<%= user.id %>">
-              <div class="Idcolumn">
-                <small>
-                  <%= user.id %>
-                </small>
-              </div>
-              <div class="namecolumn1">
-                <h2>
-                  <%= user.name %>
-                </h2>
-                <strong>
-                  <%= user.userName %>
-                </strong><br>
-                <strong>
-                  <%= user.classroom %>
-                </strong><small> Série</small>
-              </div>
-              <div class="priceColumn">
-                <span>Saldo total</span>
-                <p>M <%= user.totalBalance %>
-                </p>
-              </div>
-              <form id="pay" action="/admin" method="post">
-                <div class="input-group mb-3 input-group-lg">
-                  <div class="input-group-prepend">
-                    <input type="number" id="amountBalanceId" name="amountId" value="<%= user.id %>"
-                      class="form-control">
-                    <span class="input-group-text" id="basic-addon1">M</span>
-                    <input type="number" id="amountBalance" name="amount" value="" class="form-control">
+        <% transactions.forEach((transaction)=>{
+          let date = transaction.createdAt
+          let dateFormatted = date.toLocaleDateString('pt-BR', {timeZone: 'UTC'})
+          let data_americana = dateFormatted
+          let data_brasileira = data_americana.split('-').reverse().join('/');
+          %>
+          <div class="col-sm-6">
+            <div class="card flex-wrap">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="container-datePay">
+                    <div class="content-datePay">
+                        <p>
+                          <img style="width:30px;" src="https://img.icons8.com/dotty/80/000000/pay-date.png"/>
+                          <%= data_brasileira%>
+                        </p>
+                    </div>
                   </div>
-                  <button class="btn btn-outline-secondary" id="pay" type="submit">Fazer Pagamento</button>
                 </div>
-              </form>
-              <div class="editRequest">
-                <form action="/admin/users/delete" method="post" onsubmit="confirmDelUser(event, this)">
-                  <input type="hidden" name="id_UserDel" value="<%= user.id %>">
-                  <% if(user.id !=1){%>
-                    <button class="btn btn-danger">Excluir usuário</button>
-                    <%}%>
-                </form>
               </div>
-            </div>
-          </div>
-          <!-- end card -->
-          <% }) %>
+              <div class="row">
+                <div class="container-pay">
+                  <div class="content-pay">
+                    <small>Pagador</small>
+                    <p>
+                      <%= transaction.userNamePay%>
+                    </p>
+                  </div>
+                  <div class="content-receiving">
+                    <small>Recebedor</small>
+                    <p>
+                      <%= transaction.userNameReceiving%>
+                    </p>
+                  </div>
+                  <div class="content-valuePay">
+                    <p>
+                      <img style="width: 30px;" src="/images/Sifrão-Maker.png" alt="Imagem de total">
+                      <%= transaction.valueTransaction%>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div> 
+        </div>
+        <%})%>        
       </div>
       <!-- end cards -->
     </main>
