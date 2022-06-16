@@ -16,7 +16,7 @@ const cookieParser = require("cookie-parser");
   try {
       const resultado = await database.sync();
   } catch (error) {
-      console.log(error);
+      console.log(`${error} é isso mesmo`);
   }
 })();
 
